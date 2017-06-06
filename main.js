@@ -7,24 +7,17 @@
 //Find PI to the Nth Digit** ---------------
 // Enter a number and have the program generate PI up to that many decimal places. Keep a limit to how far the program will go.
 
-      // let piDecimal = prompt("How many decimals of PI would you like to see?");
+         // let piPrompt = prompt("How many decimal places of PI would you like to see (5 decimals is the default)?");
 
-      let pi = (x) => {
-         // if (typeof x === 'string') {   //--> the user input will always be a string here
-         //    x = 2;
-         // }
-         let d = parseInt(x);
-         console.log(d);
-
-         if (d > 20 || d < 2 || d === undefined || d !== d) {
-            d = 5;
+         let pi = (promptVal) => {
+            let d = parseInt(promptVal);
+            if (d > 20 || d !== d || d < 2) {
+               d = 2;
+            }
+            console.log(Math.PI.toFixed(d));
          }
-         console.log(Math.PI.toFixed(d));
-      }
-
-      // pi(piDecimal);
-      // console.log(Math.PI); // JavaScript will only allow a max default of 15 decimal places and toFixed has a maximum of 20 decimal places
-
+         // pi(piPrompt);
+         // console.log(Math.PI); // JavaScript will print a max default of 15 decimal places in the Chrome Console and toFixed has a maximum of 20 decimal places
 
 // I need to improve the verification of user input. Right now I am struggling with if a user inputs a string or not and then eventually getting the input into a number at the same time. See commented out block of code above... It has a good deal of bugs the the functionality right now that is unsatisfying.
 
@@ -44,17 +37,17 @@
 // The natural logarithm of a number is its logarithm to the base of the mathematical constant e, where e is an irrational and transcendental number approximately equal to 2.718281828459. The natural logarithm of x is generally written as ln x, loge x, or sometimes, if the base e is implicit, simply log x.
 
       // let eDecimal = prompt("How many decimal places would you like to see of e (5 is the default)?");
-
-      let e = (x) => {
-         let d = parseInt(x);
-         if (d > 20 || d !== d|| d < 2) {
+      let e = (promptVal) => {
+         let d = parseInt(promptVal);
+         if (d > 20 || d !== d || d < 3) {
             d = 5;
          }
          console.log(Math.E.toFixed(d));
       }
 
+
       // e(eDecimal);
-      // console.log(Math.E); // JavaScript will only allow a max default of 15 decimal places and toFixed has a maximum of 20 decimal places
+      // console.log(Math.E); // JavaScript will print a max default of 15 decimal places in the Chrome Console and toFixed has a maximum of 20 decimal places
 
 
 
@@ -77,32 +70,32 @@
    //Often, especially in modern usage, the sequence is extended by one more initial term: 0,1,1,2,3,5,8,13,21,34,55,89,144
 
 
-      let fibonacci = (count) => {
-         let a = 0, b = 1, temp;
-         while(count > 0) {
-            temp = a;
-            a += b;
-            b = temp;
-            count--;
-            // console.log(b); // this will log the sequence
-         }
-         return b;
+   let fibonacci = (input) => {
+      let a = 0, b = 1, temp;
+      for (let i = 0; i < input; i++) {
+         temp = a;
+         a += b;
+         b = temp;
+         console.log(b);
       }
+      return "The number " + input + " place in the Fibonacci Sequence, when we start at '0' is " + b;
+   }
+   // console.log(fibonacci(8));
 
-      console.log(fibonacci(15));
 
-      let fibonacci2 = (count) => {
-         let a = 0, b = 1, temp;
-         for (let i = 0; i < count; i++) {
-            temp = a;
-            a +=b;
-            b = temp;
-            // console.log(b); // this will log the sequence
 
-         }
-         return b;
+   let fibonacci2 = (input) => {
+      let a = 0, b = 1, temp;
+      while(input > 0) {
+         temp = a;
+         a += b;
+         b = temp
+         input--;
+         console.log(b);
       }
-      console.log(fibonacci2(15));
+      return "The number " + input + " place in the Fibonacci Sequence, when we start at '0' is " + b;
+   }
+   // fibonacci2(8);
 
 
 
@@ -118,7 +111,53 @@
 
 
 
-/**Prime Factorization** - Have the user enter a number and find all Prime Factors (if there are any) and display them.
+//Prime Factorization** --------------------------
+//Have the user enter a number and find all Prime Factors (if there are any) and display them.
+
+
+function getAllFactorsFor(remainder) {
+    var factors = [], i;
+
+    for (i = 2; i <= remainder; i++) {
+        while (remainder % i === 0) {
+            factors.push(i);
+            remainder /= i;
+            console.log(remainder);
+        }
+    }
+
+    console.log(factors);
+}
+getAllFactorsFor(35);
+
+
+
+
+
+
+//Largest Prime Factor** --------------------------
+//Have the user enter a number and find the Largest Prime Factors of the given number.
+
+function largestPrimeFactor(number) {
+   var i = 2;
+   if (number < 2 || number !== number) {
+      console.log("Please use positive non-zero integers up to 1,000,000,000,000");
+   }
+   else {
+      while (i <= number) {
+         if (number % i == 0) {
+              number /= i;
+         }
+         else {
+              i++;
+         }
+      }
+      console.log(i);
+   }
+
+}
+var a = 33;
+// largestPrimeFactor(a)
 
 
 
@@ -127,7 +166,7 @@
 
 
 
-**Next Prime Number** - Have the program find prime numbers until the user chooses to stop asking for the next one.
+/**Next Prime Number** - Have the program find prime numbers until the user chooses to stop asking for the next one.
 
 **Find Cost of Tile to Cover W x H Floor** - Calculate the total cost of tile it would take to cover a floor plan of width and height, using a cost entered by the user.
 
